@@ -31,3 +31,23 @@ def top10_users_with_most_tweets(tweets):
             top10.append(tweet)
     top10.sort(key=lambda x: x['user']['statusesCount'], reverse=True)
     return top10
+
+def top10_days_with_most_tweets(tweets):
+    """
+    Returns the top 10 days with the most tweets
+    """
+    date_tweet_count = dict()
+    for tweet in tweets:
+        date = tweet['date'][:10]
+        if date in date_tweet_count:
+            date_tweet_count[date] += 1
+        else:
+            date_tweet_count[date] = 1
+    top10 = []
+    # Get the top 10 days with the most tweets from the dictionary
+    for key, value in sorted(date_tweet_count.items(), key=lambda item: item[1], reverse=True):
+        if len(top10) == 10:
+            break
+        top10.append({'date': key, 'tweetCount': value})
+
+    return top10
