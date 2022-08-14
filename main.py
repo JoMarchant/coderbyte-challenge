@@ -9,6 +9,7 @@ def main():
     top10_retweeted = tweets_functions.top10_retweeted(tweets)
     top10_users_with_most_tweets = tweets_functions.top10_users_with_most_tweets(tweets)
     top10_days_with_most_tweets = tweets_functions.top10_days_with_most_tweets(tweets)
+    top10_used_hashtags = tweets_functions.top10_used_hashtags(tweets)
 
 
 if __name__ == '__main__':

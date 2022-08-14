@@ -51,3 +51,25 @@ def top10_days_with_most_tweets(tweets):
         top10.append({'date': key, 'tweetCount': value})
 
     return top10
+
+def top10_used_hashtags(tweets):
+    """
+    Returns the top 10 used hashtags
+    """
+    hashtag_dict = dict()
+    for tweet in tweets:
+        text = tweet['content']
+        hashtags = [hashtag for hashtag in text.split() if hashtag.startswith('#')]
+        if len(hashtags) > 0:
+            for hashtag in hashtags:
+                if hashtag in hashtag_dict:
+                    hashtag_dict[hashtag] += 1
+                else:
+                    hashtag_dict[hashtag] = 1
+    top10 = []
+    # Get the top 10 hashtags from the dictionary
+    for key, value in sorted(hashtag_dict.items(), key=lambda item: item[1], reverse=True):
+        if len(top10) == 10:
+            break
+        top10.append({'hashtag': key, 'count': value})
+    return top10
